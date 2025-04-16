@@ -15,10 +15,13 @@ export default defineConfig({
   npmClient: 'npm',
   routes,
   proxy: {
-    '*': {
-      'target':'*',
-      'changeOrigin': true,
-    }
+    '.*': {
+      target: '.*',
+      headers: {
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+        'Cross-Origin-Opener-Policy': 'same-origin',
+      },
+    },
   },
   history: {
     type: 'hash',
@@ -62,12 +65,10 @@ export default defineConfig({
       .plugin('generate-json-webpack-plugin')
       .use(new GenerateJsonPlugin('manifest.json', manifest))
 
-    memo.devServer.headers(
-      {
-        "Cross-Origin-Embedder-Policy": "require-corp",
-        "Cross-Origin-Opener-Policy": "same-origin",
-      }
-     );
+    memo.devServer.headers({
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+      'Cross-Origin-Opener-Policy': 'same-origin',
+    })
 
     return memo
   },

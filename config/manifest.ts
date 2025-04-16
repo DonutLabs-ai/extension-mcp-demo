@@ -9,14 +9,14 @@ const versionNumbs = packageJson.version.split(/[^0-9]+/)
 const manifestVersion = versionNumbs.join('.')
 
 export default {
-  name: `Kumi Extension${suffix}`,
+  name: `MCP Extension demo${suffix}`,
   version: manifestVersion,
   version_name: packageJson.version,
   manifest_version: 3,
   description: 'A full stack framework for Chrome Extension',
   action: {
     default_popup: 'index.html#/',
-    default_title: 'Kumi Extension',
+    default_title: 'MCP Extension',
     default_icon: {
       '16': 'icon-16.png',
       '19': 'icon-19.png',

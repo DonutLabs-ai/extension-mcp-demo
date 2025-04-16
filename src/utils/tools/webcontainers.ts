@@ -12,12 +12,12 @@ export async function startDevServer(webcontainerInstance: WebContainer) {
   // `npm run dev`
   await webcontainerInstance.spawn('npm', ['run', 'start'])
 
-  const iframeEl = document.querySelector('iframe');
+  const iframeEl = document.querySelector('iframe')
   if (!iframeEl) {
-    console.log('no iframe');
+    console.log('no iframe')
   } else {
     webcontainerInstance.on('server-ready', (_port, url) => {
-        iframeEl.src = url
+      iframeEl.src = url
     })
   }
 }

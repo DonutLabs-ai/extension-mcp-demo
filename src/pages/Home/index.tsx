@@ -1,6 +1,6 @@
 import { PageContainer } from '@ant-design/pro-components'
-import { request } from 'umi'
 import { WebContainer } from '@webcontainer/api'
+import { request } from 'umi'
 
 import { trim } from '@/utils/format'
 
