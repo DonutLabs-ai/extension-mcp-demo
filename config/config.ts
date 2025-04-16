@@ -2,8 +2,6 @@ import { defineConfig } from '@umijs/max'
 // import fs from 'fs'
 import GenerateJsonPlugin from 'generate-json-webpack-plugin'
 
-// import path from 'path'
-// import type { Compiler } from 'webpack'
 import manifest from './manifest'
 import routes from './routes'
 
@@ -16,6 +14,12 @@ export default defineConfig({
   layout: false,
   npmClient: 'npm',
   routes,
+  proxy: {
+    '*': {
+      'target':'*',
+      'changeOrigin': true,
+    }
+  },
   history: {
     type: 'hash',
   },
@@ -58,23 +62,12 @@ export default defineConfig({
       .plugin('generate-json-webpack-plugin')
       .use(new GenerateJsonPlugin('manifest.json', manifest))
 
-    // to chrome extension content script
-    memo
-      .entry('content-script')
-      .add('@/extension/content/content-script.ts')
-      .end()
-
-    // to chrome extension background script
-    memo
-      .entry('service-script')
-      .add('@/extension/background/bootstrap.ts')
-      .end()
-
-    // to chrome extension inpage content script
-    memo
-      .entry('inpage-content')
-      .add('@/extension/content/inpage-content.ts')
-      .end()
+    memo.devServer.headers(
+      {
+        "Cross-Origin-Embedder-Policy": "require-corp",
+        "Cross-Origin-Opener-Policy": "same-origin",
+      }
+     );
 
     return memo
   },
