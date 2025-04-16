@@ -8,7 +8,6 @@
     "dev": "max dev",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
-    "prepare": "husky install",
     "setup": "max setup",
     "start": "npm run dev"
   },
@@ -37,7 +36,6 @@
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.0",
     "generate-json-webpack-plugin": "^2.0.0",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^2",
